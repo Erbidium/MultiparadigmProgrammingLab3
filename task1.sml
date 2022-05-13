@@ -38,12 +38,14 @@ fun get_substitutions2(strings, s) =
 get_substitutions2([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], "Fred");
 
 
-fun similar_names(strings, fullName) =
+fun similar_names(strings, {first=f, middle=m, last=l}) =
     let
-        fun temp(str) =
-            str
+        fun temp(strs) =
+            case strs of
+            [] => []
+            | head::tail => {first=head, middle=m, last=l}::temp(tail)
     in
-        strings
+        {first=f, middle=m, last=l}::temp(get_substitutions2(strings, f))
     end;
 
 
