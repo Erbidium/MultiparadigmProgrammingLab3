@@ -26,3 +26,18 @@ fun card_value(cardSuit, cardRank) =
 
 card_value(Clubs, Num 10);
 
+fun all_same_color(cardsList) =
+    let
+        fun check(lst, checkColor) =
+            case lst of
+            [] => true
+            | head::tail => if card_color(head) <> checkColor
+                          then false
+                          else check(tail, checkColor)
+    in
+        case cardsList of
+        head::tail => check(tail, card_color(head))
+    end;
+
+all_same_color([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)])
+
