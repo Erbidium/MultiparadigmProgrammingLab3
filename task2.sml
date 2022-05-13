@@ -53,5 +53,18 @@ fun all_same_color(cardsList) =
         head::tail => check(tail, card_color(head))
     end;
 
-all_same_color([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)])
+all_same_color([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]);
+
+
+fun sum_cards(cardsList) =
+    let
+        fun sum(lst, accum) = 
+            case lst of
+            head::tail => sum(tail, accum+card_value(head))
+            |[] => accum;
+    in
+        sum(cardsList, 0)
+    end;
+
+sum_cards([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]);
 
