@@ -25,14 +25,14 @@ get_substitutions1([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred",
 
 fun get_substitutions2(strings, s) =
     let
-        fun getWords(str, lst) =
-            case all_except_option(str, lst) of
-                  NONE => []
-                  |SOME lst =>lst
+        fun recursive(str, lst, accumulator) =
+            case lst of
+            head::tail => (case all_except_option(s, head) of
+                           NONE => recursive(s, tail, accumulator)
+                           |SOME lst => recursive(s, tail, accumulator @ lst))
+            |[] => accumulator
     in
-        case strings of
-        head::tail => getWords(s, head) @ get_substitutions2(tail, s)
-        |[] => []
+        recursive(s, strings, [])
     end;
 
 get_substitutions2([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], "Fred");
