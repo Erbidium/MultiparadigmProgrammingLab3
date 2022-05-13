@@ -5,8 +5,6 @@ type card = suit * rank
 datatype color = Red | Black
 datatype move = Discard of card | Draw 
 
-exception IllegalMove
-
 
 fun card_color(cardSuit, cardRank) =
     case cardSuit of
@@ -25,6 +23,22 @@ fun card_value(cardSuit, cardRank) =
     | Num num => num;
 
 card_value(Clubs, Num 10);
+
+exception IllegalMove
+
+fun remove_card(card, cardsList, e) =
+    let
+        fun remove(checkedCards, cardToFind, leftCards) =
+            case leftCards of
+            head::tail => (if (head = cardToFind)
+                        then checkedCards@tail
+                        else remove(checkedCards @ (head::[]), cardToFind, tail))
+            |[] => raise e
+    in
+        remove([], card, cardsList)
+    end;
+
+remove_card((Clubs, Num 10), [(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], IllegalMove);
 
 fun all_same_color(cardsList) =
     let
