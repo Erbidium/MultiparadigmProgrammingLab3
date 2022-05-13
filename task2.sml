@@ -68,3 +68,19 @@ fun sum_cards(cardsList) =
 
 sum_cards([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]);
 
+fun score(cardsList, goal) =
+    let
+        val sum = sum_cards(cardsList)
+        fun calcPartialScore() = 
+            if sum > goal
+            then 3*(sum - goal)
+            else goal - sum
+        val partialScore = calcPartialScore()
+    in
+        if all_same_color(cardsList) = false
+        then partialScore
+        else partialScore div 2
+    end;
+
+
+score([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], 50);
