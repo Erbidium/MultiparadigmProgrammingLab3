@@ -1,7 +1,20 @@
 use "task2.sml";
 
 (*card_color tests*)
-card_color(Clubs, Jack);
+fun provided_test_card_color() = 
+    let
+        val card1=(Clubs, Jack)
+        val card2=(Diamonds, Queen)
+        val card3=(Spades, Num 9)
+    in
+        [
+            card_color(card1),
+            card_color(card2),
+            card_color(card3)
+        ]
+    end;
+
+provided_test_card_color();
 
 (*card_value tests*)
 card_value(Clubs, Num 10);
