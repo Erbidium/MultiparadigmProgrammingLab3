@@ -3,7 +3,9 @@ datatype rank = Jack | Queen | King | Ace | Num of int
 type card = suit * rank
 
 datatype color = Red | Black
-datatype move = Discard of card | Draw 
+datatype move = Discard of card | Draw
+
+exception IllegalMove
 
 fun card_color(cardSuit, cardRank) =
     case cardSuit of
@@ -13,13 +15,9 @@ fun card_color(cardSuit, cardRank) =
 
 fun card_value(cardSuit, cardRank) =
     case cardRank of
-    Jack => 11
-    | Queen => 12
-    | King => 13
-    | Ace => 14
-    | Num num => num;
-
-exception IllegalMove
+    Num num => num
+    |Ace => 11
+    |_ => 10;
 
 fun remove_card(card, cardsList, e) =
     let
