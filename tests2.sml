@@ -17,7 +17,20 @@ fun provided_test_card_color() =
 provided_test_card_color();
 
 (*card_value tests*)
-card_value(Clubs, Num 10);
+fun provided_test_card_value() = 
+    let
+        val card1=(Clubs, Jack)
+        val card2=(Diamonds, Queen)
+        val card3=(Spades, Num 9)
+    in
+        [
+            card_value(card1),
+            card_value(card2),
+            card_value(card3)
+        ]
+    end;
+
+provided_test_card_value();
 
 (*remove_card tests*)
 remove_card((Clubs, Num 10), [(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], IllegalMove);
