@@ -1,13 +1,26 @@
 use "task1.sml";
 
 (*all_except_option tests*)
-all_except_option("1", ["1", "4", "5", "6"]);
+fun provided_test_all_except_option () = 
+    let
+        val str1="1" val strList1=["1", "4", "5", "6"]
+        val str2="5" val strList2=["1", "4", "5", "6"]
+        val str3="8" val strList3=["1", "4", "5", "6"]
+    in
+        [
+            all_except_option(str1, strList1),
+            all_except_option(str2, strList2),
+            all_except_option(str3, strList3)
+        ]
+    end;
+
+provided_test_all_except_option()
 
 (*get_substitutions1 tests*)
-get_substitutions1([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], "Fred");
+(*get_substitutions1([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], "Fred");
 
 (*get_substitutions2 tests*)
 get_substitutions2([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], "Fred");
 
 (*similar_names tests*)
-similar_names([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], {first="Fred", middle="W", last="Smith"});
+similar_names([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], {first="Fred", middle="W", last="Smith"});*)
