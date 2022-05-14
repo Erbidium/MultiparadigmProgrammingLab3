@@ -84,3 +84,25 @@ fun score(cardsList, goal) =
 
 
 score([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], 50);
+
+
+fun officiate(cardsList, moveList, goal) =
+    let 
+        fun doStep(cardslst, movelst, playerCards) =
+            if sum_cards(playerCards) > goal
+            then score(playerCards)
+            else (
+                case movelst of
+                [] => score(playerCards)
+                | step::tail => (
+                    case step of
+                    Draw =>
+                    Discard card => card
+                )
+            )
+    in
+        doStep(cardsList, moveList, [])
+    end;
+
+
+officiate([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], [Draw, Draw, Discard (Clubs, Num 10) , Discard (Spades, Num 10)], 50);
