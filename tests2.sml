@@ -33,7 +33,20 @@ fun provided_test_card_value() =
 provided_test_card_value();
 
 (*remove_card tests*)
-remove_card((Clubs, Num 10), [(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], IllegalMove);
+fun provided_test_remove_card() = 
+    let
+        val card1=(Clubs, Num 10) val cardsList1=[(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]
+        val card2=(Spades, Num 10) val cardsList2=[(Spades, Num 10)]
+        val card3=(Diamonds, Num 10) val cardsList3=[(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]
+    in
+        [
+            remove_card(card1, cardsList1, IllegalMove),
+            remove_card(card2, cardsList2, IllegalMove),
+            remove_card(card3, cardsList3, IllegalMove)
+        ]
+    end;
+
+provided_test_remove_card();
 
 (*all_same_color tests*)
 all_same_color([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]);
