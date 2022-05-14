@@ -14,11 +14,24 @@ fun provided_test_all_except_option () =
         ]
     end;
 
-provided_test_all_except_option()
+provided_test_all_except_option();
 
 (*get_substitutions1 tests*)
-(*get_substitutions1([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], "Fred");
+fun provided_test_get_substitutions1 () = 
+    let
+        val strList1=[["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]] val name1="Fred"
+        val strList2=[["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]] val name2="Elizabeth"
+        val strList3=[["Fred","Fredrick"],["Elizabeth","Betty"],["John","James","Johny"]] val name3="John"
+    in
+        [
+            get_substitutions1(strList1, name1),
+            get_substitutions1(strList2, name2),
+            get_substitutions1(strList3, name3)
+        ]
+    end;
 
+provided_test_get_substitutions1();
+(*
 (*get_substitutions2 tests*)
 get_substitutions2([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], "Fred");
 
