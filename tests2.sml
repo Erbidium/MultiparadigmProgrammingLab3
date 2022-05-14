@@ -49,7 +49,20 @@ fun provided_test_remove_card() =
 provided_test_remove_card();
 
 (*all_same_color tests*)
-all_same_color([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]);
+fun provided_test_all_same_color() = 
+    let
+        val cardsList1=[(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]
+        val cardsList2=[(Spades, Num 10)]
+        val cardsList3=[(Clubs, Num 10), (Spades, Num 10), (Hearts, Num 10)]
+    in
+        [
+            all_same_color(cardsList1),
+            all_same_color(cardsList2),
+            all_same_color(cardsList3)
+        ]
+    end;
+
+provided_test_all_same_color();
 
 (*sum_cards tests*)
 sum_cards([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]);
