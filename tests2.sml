@@ -82,6 +82,20 @@ provided_test_sum_cards();
 
 (*score tests*)
 score([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], 50);
+fun provided_test_score() = 
+    let
+        val cardsList1=[(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)] val goal1=50
+        val cardsList2=[(Spades, Queen)] val goal2=30
+        val cardsList3=[(Clubs, King), (Spades, Ace), (Hearts, Num 10)] val goal3=20
+    in
+        [
+            score(cardsList1, goal1),
+            score(cardsList2, goal2),
+            score(cardsList3, goal3)
+        ]
+    end;
+
+provided_test_score();
 
 (*officiate tests*)
 officiate([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], [Draw, Draw, Discard (Clubs, Num 10)], 50);
