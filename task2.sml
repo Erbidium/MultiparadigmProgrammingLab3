@@ -90,19 +90,23 @@ fun officiate(cardsList, moveList, goal) =
     let 
         fun doStep(cardslst, movelst, playerCards) =
             if sum_cards(playerCards) > goal
-            then score(playerCards)
+            then score(playerCards, goal)
             else (
                 case movelst of
-                [] => score(playerCards)
-                | step::tail => (
+                step::tailMove => (
                     case step of
-                    Draw =>
-                    Discard card => card
+                    Draw => (
+                        case cardslst of
+                        [] => score(playerCards, goal)
+                        |cardHead::tailCards => doStep(tailCards, tailMove, cardHead::playerCards)
+                    )
+                    |Discard card => doStep(cardslst, tailMove, remove_card(card, playerCards, IllegalMove))
                 )
+                |[] => score(playerCards, goal)
             )
     in
         doStep(cardsList, moveList, [])
     end;
 
 
-officiate([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], [Draw, Draw, Discard (Clubs, Num 10) , Discard (Spades, Num 10)], 50);
+officiate([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], [Draw, Draw, Discard (Clubs, Num 10)], 50);
