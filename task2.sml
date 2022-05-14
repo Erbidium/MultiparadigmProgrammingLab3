@@ -5,14 +5,11 @@ type card = suit * rank
 datatype color = Red | Black
 datatype move = Discard of card | Draw 
 
-
 fun card_color(cardSuit, cardRank) =
     case cardSuit of
     Hearts => Red
     | Diamonds => Red
     | _ => Black;
-
-card_color(Clubs, Jack);
 
 fun card_value(cardSuit, cardRank) =
     case cardRank of
@@ -21,8 +18,6 @@ fun card_value(cardSuit, cardRank) =
     | King => 13
     | Ace => 14
     | Num num => num;
-
-card_value(Clubs, Num 10);
 
 exception IllegalMove
 
@@ -38,8 +33,6 @@ fun remove_card(card, cardsList, e) =
         remove([], card, cardsList)
     end;
 
-remove_card((Clubs, Num 10), [(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], IllegalMove);
-
 fun all_same_color(cardsList) =
     let
         fun check(lst, checkColor) =
@@ -53,9 +46,6 @@ fun all_same_color(cardsList) =
         head::tail => check(tail, card_color(head))
     end;
 
-all_same_color([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]);
-
-
 fun sum_cards(cardsList) =
     let
         fun sum(lst, accum) = 
@@ -65,8 +55,6 @@ fun sum_cards(cardsList) =
     in
         sum(cardsList, 0)
     end;
-
-sum_cards([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]);
 
 fun score(cardsList, goal) =
     let
@@ -81,10 +69,6 @@ fun score(cardsList, goal) =
         then partialScore
         else partialScore div 2
     end;
-
-
-score([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], 50);
-
 
 fun officiate(cardsList, moveList, goal) =
     let 
@@ -107,6 +91,3 @@ fun officiate(cardsList, moveList, goal) =
     in
         doStep(cardsList, moveList, [])
     end;
-
-
-officiate([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], [Draw, Draw, Discard (Clubs, Num 10)], 50);
