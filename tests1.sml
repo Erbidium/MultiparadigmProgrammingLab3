@@ -31,9 +31,22 @@ fun provided_test_get_substitutions1 () =
     end;
 
 provided_test_get_substitutions1();
-(*
+
 (*get_substitutions2 tests*)
-get_substitutions2([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], "Fred");
+fun provided_test_get_substitutions2 () = 
+    let
+        val strList1=[["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]] val name1="Fred"
+        val strList2=[["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]] val name2="Elizabeth"
+        val strList3=[["Fred","Fredrick"],["Elizabeth","Betty"],["John","James","Johny"]] val name3="John"
+    in
+        [
+            get_substitutions2(strList1, name1),
+            get_substitutions2(strList2, name2),
+            get_substitutions2(strList3, name3)
+        ]
+    end;
+
+provided_test_get_substitutions2();
 
 (*similar_names tests*)
-similar_names([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], {first="Fred", middle="W", last="Smith"});*)
+(*similar_names([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], {first="Fred", middle="W", last="Smith"});*)
