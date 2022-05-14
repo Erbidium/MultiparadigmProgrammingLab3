@@ -65,7 +65,20 @@ fun provided_test_all_same_color() =
 provided_test_all_same_color();
 
 (*sum_cards tests*)
-sum_cards([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]);
+fun provided_test_sum_cards() = 
+    let
+        val cardsList1=[(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)]
+        val cardsList2=[(Spades, Queen)]
+        val cardsList3=[(Clubs, King), (Spades, Ace), (Hearts, Num 10)]
+    in
+        [
+            sum_cards(cardsList1),
+            sum_cards(cardsList2),
+            sum_cards(cardsList3)
+        ]
+    end;
+
+provided_test_sum_cards();
 
 (*score tests*)
 score([(Clubs, Num 10), (Spades, Num 10), (Diamonds, Num 10)], 50);
